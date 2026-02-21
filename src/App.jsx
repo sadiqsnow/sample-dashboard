@@ -42,7 +42,7 @@ const pipeline = [
   { stage: 'Won', amount: 290 },
 ]
 
-const COLORS = ['#4f8df6', '#47c3e6', '#7a6de7', '#45c79b']
+const COLORS = ['#3b82f6', '#06b6d4', '#8b5cf6', '#10b981']
 
 const activities = [
   { title: 'Qiddiya workshop proposal sent', time: '2h ago' },
@@ -54,7 +54,10 @@ function App() {
   return (
     <div className="app-shell">
       <aside className="sidebar card">
-        <h2>DTS</h2>
+        <div className="brand">
+          <h2>DTS</h2>
+          <span>Executive</span>
+        </div>
         <nav>
           <a className="active" href="#">Overview</a>
           <a href="#">Pipeline</a>
@@ -89,45 +92,45 @@ function App() {
           {stats.map((s) => (
             <article key={s.label} className="card stat-card">
               <span>{s.label}</span>
-              <h2 className="count-up">{s.value}</h2>
+              <h2>{s.value}</h2>
               <small className={s.trend === 'up' ? 'up' : 'down'}>{s.delta} vs last week</small>
             </article>
           ))}
         </section>
 
         <section className="chart-grid">
-          <article className="card">
+          <article className="card panel-large">
             <h3>Revenue Trend (SAR K)</h3>
             <div className="chart-wrap">
               <ResponsiveContainer width="100%" height={220}>
                 <AreaChart data={revenueTrend}>
                   <defs>
                     <linearGradient id="rev" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#4f8df6" stopOpacity={0.7} />
-                      <stop offset="95%" stopColor="#4f8df6" stopOpacity={0.04} />
+                      <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.5} />
+                      <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.05} />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid stroke="#e6edf8" vertical={false} />
-                  <XAxis dataKey="week" stroke="#7c95ba" />
-                  <YAxis stroke="#7c95ba" />
-                  <Tooltip contentStyle={{ background: '#fff', border: '1px solid #d8e4f8' }} />
-                  <Area type="monotone" dataKey="value" stroke="#47c3e6" fill="url(#rev)" />
+                  <CartesianGrid stroke="#e8eef9" vertical={false} />
+                  <XAxis dataKey="week" stroke="#7a8fb1" />
+                  <YAxis stroke="#7a8fb1" />
+                  <Tooltip contentStyle={{ background: '#fff', border: '1px solid #d7e3f8', borderRadius: '10px' }} />
+                  <Area type="monotone" dataKey="value" stroke="#2563eb" fill="url(#rev)" strokeWidth={2.5} />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
           </article>
 
-          <article className="card">
+          <article className="card panel-small">
             <h3>Service Mix (%)</h3>
-            <div className="chart-wrap">
+            <div className="chart-wrap chart-center">
               <ResponsiveContainer width="100%" height={220}>
                 <PieChart>
-                  <Pie data={serviceMix} dataKey="value" nameKey="name" innerRadius={45} outerRadius={78} paddingAngle={3}>
+                  <Pie data={serviceMix} dataKey="value" nameKey="name" innerRadius={52} outerRadius={82} paddingAngle={3}>
                     {serviceMix.map((entry, index) => (
                       <Cell key={`cell-${entry.name}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
-                  <Tooltip contentStyle={{ background: '#fff', border: '1px solid #d8e4f8' }} />
+                  <Tooltip contentStyle={{ background: '#fff', border: '1px solid #d7e3f8', borderRadius: '10px' }} />
                 </PieChart>
               </ResponsiveContainer>
             </div>
@@ -138,22 +141,22 @@ function App() {
             </div>
           </article>
 
-          <article className="card">
+          <article className="card panel-large">
             <h3>Pipeline Value by Stage (SAR K)</h3>
             <div className="chart-wrap">
               <ResponsiveContainer width="100%" height={220}>
                 <BarChart data={pipeline}>
-                  <CartesianGrid stroke="#e6edf8" vertical={false} />
-                  <XAxis dataKey="stage" stroke="#7c95ba" />
-                  <YAxis stroke="#7c95ba" />
-                  <Tooltip contentStyle={{ background: '#fff', border: '1px solid #d8e4f8' }} />
-                  <Bar dataKey="amount" radius={[10, 10, 0, 0]} fill="#4f8df6" />
+                  <CartesianGrid stroke="#e8eef9" vertical={false} />
+                  <XAxis dataKey="stage" stroke="#7a8fb1" />
+                  <YAxis stroke="#7a8fb1" />
+                  <Tooltip contentStyle={{ background: '#fff', border: '1px solid #d7e3f8', borderRadius: '10px' }} />
+                  <Bar dataKey="amount" radius={[10, 10, 2, 2]} fill="#3b82f6" />
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </article>
 
-          <article className="card">
+          <article className="card panel-small">
             <h3>Recent Activity</h3>
             <ul className="activity-list">
               {activities.map((a) => (
