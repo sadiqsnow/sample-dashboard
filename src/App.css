@@ -1,0 +1,224 @@
+:root {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: #132a4a;
+  background: #f3f7ff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #f7faff, #edf3fe);
+}
+
+#root {
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.app-shell {
+  max-width: 1460px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 1rem;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #dbe6f7;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(24, 62, 119, 0.07);
+}
+
+.sidebar {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 2rem);
+  position: sticky;
+  top: 1rem;
+}
+
+.sidebar h2 {
+  margin: 0 0 1rem;
+  font-size: 1.4rem;
+}
+
+.sidebar nav {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #4c678f;
+  padding: 0.6rem 0.7rem;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.sidebar a.active,
+.sidebar a:hover {
+  background: #eef4ff;
+  color: #27548f;
+}
+
+.sidebar-foot {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #e8eefb;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.sidebar-foot small { color: #7e95b7; }
+
+.main {
+  display: grid;
+  gap: 1rem;
+}
+
+.topbar {
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+.topbar p {
+  margin: 0.35rem 0 0;
+  color: #6d85a8;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.filters { display: flex; gap: 0.4rem; }
+
+.chip {
+  border: 1px solid #d2def5;
+  background: #f7faff;
+  color: #4f6990;
+  border-radius: 999px;
+  padding: 0.35rem 0.6rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chip.active {
+  background: #2f73f2;
+  color: white;
+  border-color: #2f73f2;
+}
+
+.action-btn {
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(120deg, #2f73f2, #31b5ee);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.58rem 0.95rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card { padding: 0.95rem; }
+.stat-card span { color: #6c85a8; font-size: 0.9rem; }
+.stat-card h2 { margin: 0.4rem 0; font-size: 1.55rem; }
+small.up { color: #08a56d; font-weight: 700; }
+small.down { color: #d14b4b; font-weight: 700; }
+
+.count-up { animation: pop 700ms ease-out; }
+@keyframes pop {
+  from { transform: translateY(5px); opacity: 0.2; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1rem;
+}
+
+.chart-grid .card { padding: 0.95rem; }
+
+h3 { margin: 0.1rem 0 0.75rem; }
+
+.chart-wrap { width: 100%; height: 220px; }
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.6rem;
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #526a91;
+  font-size: 0.83rem;
+}
+
+.legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.activity-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.activity-list li {
+  border: 1px solid #dee8fb;
+  background: #f8fbff;
+  border-radius: 12px;
+  padding: 0.65rem 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activity-list p {
+  margin: 0.25rem 0 0;
+  color: #7690b5;
+  font-size: 0.84rem;
+}
+
+@media (max-width: 1220px) {
+  .app-shell { grid-template-columns: 1fr; }
+  .sidebar { min-height: auto; position: static; }
+  .stats-grid { grid-template-columns: repeat(2, minmax(180px, 1fr)); }
+}
+
+@media (max-width: 860px) {
+  .topbar { flex-direction: column; align-items: flex-start; }
+  .chart-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 620px) {
+  #root { padding: 0.7rem; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .topbar-actions { flex-wrap: wrap; }
+}
